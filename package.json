@@ -1,0 +1,32 @@
+{
+  "name": "webpack-course",
+  "version": "1.0.0",
+  "description": "webpack course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css": "webpack --config ./primer-loader/webpack.config.js",
+    "stylus": "webpack --config ./stylus-loader/webpack.config.js",
+    "extract": "webpack --config ./plugins-extract-text/webpack.config.js",
+    "start:dev": "webpack-dev-server --config webpack-dev-server/webpack.config.js"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "LeonidasEsteban",
+  "license": "MIT",
+  "dependencies": {
+    "file-loader": "^1.1.5",
+    "nib": "^1.1.2",
+    "rupture": "^0.6.2",
+    "stylus": "^0.54.5"
+  },
+  "devDependencies": {
+    "css-loader": "0.28.7",
+    "extract-text-webpack-plugin": "3.0.1",
+    "style-loader": "0.19.0",
+    "stylus-loader": "3.0.1",
+    "webpack": "3.8.1",
+    "webpack-dev-server": "2.9.3"
+  }
+}
