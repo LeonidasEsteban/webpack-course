@@ -10,7 +10,9 @@
     "build:extract": "webpack --config ./plugins-extract-text/webpack.config.js",
     "start:dev": "webpack-dev-server --config webpack-dev-server/webpack.config.js",
     "build:babel": "webpack --config babel-loader/webpack.config.js",
-    "build:url": "webpack --config url-loader/webpack.config.js"
+    "build:img": "webpack --config url-loader-imagenes/webpack.config.js",
+    "build:fonts": "webpack --config url-loader-fuentes/webpack.config.js",
+    "build:video": "webpack --config url-loader-video-audio/webpack.config.js"
   },
   "keywords": [
     "webpack"
