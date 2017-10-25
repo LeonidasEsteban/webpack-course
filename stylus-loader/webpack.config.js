@@ -1,12 +1,12 @@
 const path = require('path');
-const nib = require('nib');
-const rupture = require('rupture');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'index.js'),
+  entry: path.resolve(__dirname, 'src/js/index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'js/bundle.js',
+    publicPath: "./dist/",
   },
   module: {
     rules: [
@@ -16,33 +16,81 @@ module.exports = {
         //   { loader: "style-loader" }, // Agrega el css al DOM en un <style>
         //   { loader: "css-loader" }, // interpreta los archivos css en js via import
         // ]
-        use: [ 'style-loader', 'css-loader' ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+      },
+      {
+        test: /\.scss$/,
+        // use: [
+        //   { loader: "style-loader" }, // Agrega el css al DOM en un <style>
+        //   { loader: "css-loader" }, // interpreta los archivos css en js via import
+        // ]
+        use: ExtractTextPlugin.extract({
+          // fallback: "style-loader",
+          use: ["css-loader", "sass-loader"]
+        })
       },
       {
         test: /\.styl$/,
+        // use: [
+        //   { loader: "style-loader" }, // Agrega el css al DOM en un <style>
+        //   { loader: "css-loader" }, // interpreta los archivos css en js via import
+        // ]
+        use: ExtractTextPlugin.extract({
+          // fallback: "style-loader",
+          use: [
+            "css-loader",
+            // "stylus-loader"
+            {
+              loader: 'stylus-loader',
+              options: {
+                use: [
+                  require('nib'),
+                  require('rupture')
+                ],
+                import: [
+                  '~nib/lib/nib/index.styl',
+                  '~rupture/rupture/index.styl'
+                ]
+              },
+            },
+          ]
+        })
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015', 'react']
+          }
+        }
+      },
+      {
+        test: /\.json$/,
+        // exclude: /(node_modules)/,
+        use: {
+          loader: 'json-loader',
+        }
+      },
+      {
+        test: /\.(png|jpg|gif|woff|eot|ttf|svg)$/,
         use: [
-          'style-loader',
           {
-            loader: 'css-loader',
+            loader: 'url-loader',
             options: {
-              modules: true,
-              // localIdentName: '[name]__[local]___[hash:base64:5]',
-              // use: [
-              //   nib(),
-              //   rupture(),
-              // ],
-              // import: [
-              //   // path.join(__dirname, 'assets/v2/stylus/modules/vars.styl'),
-              //   // path.join(__dirname, 'assets/v2/stylus/modules/mixins.styl'),
-              //   '~nib/lib/nib/index.styl',
-              //   '~rupture/rupture/index.styl',
-              // ],
-              // compress: true,
+              limit: 100000
             }
-          },
-          'stylus-loader'
+          }
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    // new ExtractTextPlugin("styles.css")
+    new ExtractTextPlugin("css/[name].css")
+  ]
 }
