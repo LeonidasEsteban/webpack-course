@@ -1,16 +1,19 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const glob = require('glob');
-const PurifyCSSPlugin = require('purifycss-webpack');
-const MinifyPlugin = require("babel-minify-webpack-plugin");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/js/index.js'),
+  entry: {
+    // vendor: ["react"],
+    home: path.resolve(__dirname, 'src/js/index.js'),
+    // contact: path.resolve(__dirname, 'src/js/contact.js'),
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'js/bundle.js',
-    publicPath: "./dist/",
+    filename: 'js/[name].js',
+    publicPath: path.resolve(__dirname, 'dist')+"/",
+    chunkFilename: 'js/[id].[chunkhash].js',
   },
   module: {
     rules: [
@@ -111,7 +114,8 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react']
+            presets: ['es2015', 'react'],
+            plugins: ['syntax-dynamic-import']
           }
         }
       },
@@ -136,25 +140,9 @@ module.exports = {
     ]
   },
   plugins: [
-    // new ExtractTextPlugin("styles.css")
-    new ExtractTextPlugin("css/[name].css"),
-    new PurifyCSSPlugin({
-      // Give paths to parse for rules. These should be absolute!
-      paths: glob.sync(path.join(__dirname, '*.html')),
-      purifyOptions: {
-        whitelist: ['Teachers, Teacher']
-      }
-    }),
-    new UglifyJSPlugin({
-      // compress: {
-      //   warnings: false,
-      // },
-      // mangle: {
-      //   except: ['$super', '$', 'exports', 'require'],
-      // }
-    }),
-    // new MinifyPlugin({
-    //   mangle: { topLevel: true }
-    // })
+    // new webpack.DllReferencePlugin({
+    //   manifest: require('./modules-manifest.json'),
+    // }),
+    new ExtractTextPlugin("css/[name].css")
   ]
 }

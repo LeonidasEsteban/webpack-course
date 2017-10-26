@@ -19,7 +19,12 @@
     "build:sass": "webpack --config sass-loader/webpack.config.js",
     "build:post": "webpack --config postcss-loader/webpack.config.js",
     "build:purify": "webpack --config purify-plugin/webpack.config.js",
-    "build:minify": "webpack --config minify/webpack.config.js"
+    "build:minify": "webpack --config minify/webpack.config.js",
+    "build:testing": "webpack --config testing/webpack.config.js",
+    "build:vendors": "webpack --config vendors/webpack.config.js",
+    "build:dll:source": "webpack --config dll/webpack.config.js",
+    "build:dll": "webpack --config dll/webpack.dll.config.js",
+    "build:dynamic": "webpack --config dynamic-imports/webpack.config.js"
   },
   "keywords": [
     "webpack"
@@ -31,19 +36,23 @@
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "file-loader": "^1.1.5",
-    "jquery": "^3.2.1",
+    "jquery": "3.2.1",
+    "lodash": "4.17.4",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "underscore": "1.8.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "0.2.0",
+    "babel-plugin-syntax-dynamic-import": "6.18.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "0.28.7",
     "extract-text-webpack-plugin": "3.0.1",
+    "html-webpack-plugin": "2.30.1",
     "json-loader": "0.5.7",
     "less": "2.7.3",
     "less-loader": "4.0.5",

@@ -7,6 +7,7 @@ import '../css/main.less';
 import data from './teachers.json';
 // console.log(data);
 
+
 import React from 'react';
 import { render } from 'react-dom';
 import Teachers from './components/teachers.js';
@@ -32,3 +33,13 @@ render(<Teachers data={data.teachers}/>, document.getElementById('container'))
 
 // renderToDOM(makeMessage(firstMessage));
 // delayedMessage();
+
+
+const $button = document.getElementById('dynamic-import');
+$button.addEventListener('click', async () => {
+
+  const { default: alerta } = await import('./alert.js')
+
+  alerta();
+
+})

@@ -7,6 +7,7 @@ import '../css/main.less';
 import data from './teachers.json';
 // console.log(data);
 
+
 import React from 'react';
 import { render } from 'react-dom';
 import Teachers from './components/teachers.js';

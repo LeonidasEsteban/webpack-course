@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Webpack App</title>
+  <link href="/Users/LeonidasEsteban/proyectos/cursos/webpack-test/testing/dist/css/common.css" rel="stylesheet"><link href="/Users/LeonidasEsteban/proyectos/cursos/webpack-test/testing/dist/css/home.css" rel="stylesheet"></head>
+  <body>
+  <script type="text/javascript" src="/Users/LeonidasEsteban/proyectos/cursos/webpack-test/testing/dist/js/common.js"></script><script type="text/javascript" src="/Users/LeonidasEsteban/proyectos/cursos/webpack-test/testing/dist/js/home.js"></script><script type="text/javascript" src="/Users/LeonidasEsteban/proyectos/cursos/webpack-test/testing/dist/js/contact.js"></script></body>
+</html>

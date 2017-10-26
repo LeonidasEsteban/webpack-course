@@ -1,4 +1,3 @@
-import '../css/estilos.css';
 import '../css/main.less';
 // import makeMessage from './make-message.js';
 // import renderToDOM from './render-to-dom';
@@ -6,6 +5,7 @@ import '../css/main.less';
 // import platziImg from '../images/platzi.png';
 import data from './teachers.json';
 // console.log(data);
+
 
 import React from 'react';
 import { render } from 'react-dom';
