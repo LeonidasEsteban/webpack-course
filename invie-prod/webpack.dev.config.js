@@ -1,7 +1,8 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const tinyPngWebpackPlugin = require('tinypng-webpack-plugin');
+const webpack = require('webpack');
 
 
 module.exports = {
@@ -11,20 +12,19 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js',
-    publicPath: path.resolve(__dirname, 'dist')+"/",
+    // publicPath: path.resolve(__dirname, 'dist')+"/",
     chunkFilename: 'js/[id].[chunkhash].js',
   },
+  // devServer: {
+  //   // contentBase: path.join(__dirname, "dist"),
+  //   // compress: true,
+  //   port: 9000,
+  // },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: 'css-loader',
-            },
-          ]
-        })
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(js|jsx)$/,
@@ -37,19 +37,18 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|jpg|gif|woff|eot|ttf|svg)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
-              limit: 100000
+              limit: 1000000,
+              fallback: 'file-loader',
+              name: "images/[name].[hash].[ext]",
             }
           }
         ]
       }
     ]
-  },
-  plugins: [
-    new ExtractTextPlugin("css/[name].css")
-  ]
+  }
 }

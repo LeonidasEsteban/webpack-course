@@ -72,5 +72,13 @@
     "url-loader": "^0.6.2",
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeonidasEsteban/webpack-course.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LeonidasEsteban/webpack-course/issues"
+  },
+  "homepage": "https://github.com/LeonidasEsteban/webpack-course#readme"
 }
